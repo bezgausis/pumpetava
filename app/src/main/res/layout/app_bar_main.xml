@@ -37,15 +37,33 @@
             android:textColor="#fff"
             android:background="@color/colorPrimary"
             android:textSize="28sp"
-            android:layout_gravity="center_horizontal|bottom" />
-    </FrameLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+            android:layout_gravity="center_horizontal|bottom" />
+
+        <Button
+            android:layout_width="127dp"
+            android:layout_height="wrap_content"
+            android:text="stop"
+            android:id="@+id/button"
+            android:onClick="stop"
+            android:layout_gravity="left|bottom" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="resume/start"
+            android:id="@+id/button2"
+            android:onClick="skaitit"
+            android:layout_gravity="right|bottom" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@android:drawable/ic_dialog_email" />
+
+    </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

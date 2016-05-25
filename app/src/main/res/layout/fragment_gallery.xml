@@ -20,23 +20,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="109dp"
-        android:onClick="skaitit"
         android:nestedScrollingEnabled="true" />
 
-
-    <Chronometer
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/chronometer"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:padding="8dp"
-        android:textColor="#fff"
-        android:background="@color/colorPrimary"
-        android:textSize="28sp"
-        android:layout_below="@+id/main_button"/>
 
 </RelativeLayout>

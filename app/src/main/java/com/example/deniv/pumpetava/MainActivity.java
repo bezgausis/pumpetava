@@ -141,12 +141,21 @@ public class MainActivity extends AppCompatActivity
             pulkst = (Chronometer) findViewById(R.id.chronometer);
             pulkst.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
             pulkst.start();
+            pulkst.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             running =true;
         }else{
             pulkst = (Chronometer) findViewById(R.id.chronometer);
             timeWhenStopped = pulkst.getBase() - SystemClock.elapsedRealtime();
+            pulkst.setBackgroundColor(getResources().getColor(R.color.colorDivider));
             pulkst.stop();
             running =false;
         }
+    }
+    public void stop(View view) {
+        pulkst = (Chronometer) findViewById(R.id.chronometer);
+        timeWhenStopped = pulkst.getBase() - SystemClock.elapsedRealtime();
+        pulkst.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        pulkst.stop();
+        running =false;
     }
 }
