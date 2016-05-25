@@ -17,8 +17,6 @@ import android.widget.Chronometer;
  */
 public class GalleryFragment extends Fragment {
 
-    Button sakt;
-    Chronometer pulkst;
 
     public GalleryFragment() {
         // Required empty public constructor
@@ -30,11 +28,4 @@ public class GalleryFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_gallery, container, false);
     }
 
-    public void skaitit(View view) {
-        sakt = (Button) getView().findViewById(R.id.main_button);
-        pulkst = (Chronometer) getView().findViewById(R.id.chronometer);
-        pulkst.setBase(SystemClock.elapsedRealtime());
-        pulkst.start();
-        return;
-    }
 }

@@ -1,6 +1,7 @@
 package com.example.deniv.pumpetava;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Chronometer;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -126,5 +129,24 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    Button sakt;
+    Chronometer pulkst;
+    long timeWhenStopped = 0;
+    Boolean running=false;
+
+    public void skaitit(View view) {
+
+        if (!running){
+            pulkst = (Chronometer) findViewById(R.id.chronometer);
+            pulkst.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
+            pulkst.start();
+            running =true;
+        }else{
+            pulkst = (Chronometer) findViewById(R.id.chronometer);
+            timeWhenStopped = pulkst.getBase() - SystemClock.elapsedRealtime();
+            pulkst.stop();
+            running =false;
+        }
     }
 }

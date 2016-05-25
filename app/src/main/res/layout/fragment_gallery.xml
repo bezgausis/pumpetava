@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=""
+    tools:context="com.example.deniv.pumpetava.GalleryFragment"
     android:nestedScrollingEnabled="true"
     >
 
@@ -31,6 +31,8 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
         android:padding="8dp"
         android:textColor="#fff"
         android:background="@color/colorPrimary"

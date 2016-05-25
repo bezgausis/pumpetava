@@ -25,6 +25,19 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <Chronometer
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chronometer"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:padding="8dp"
+            android:textColor="#fff"
+            android:background="@color/colorPrimary"
+            android:textSize="28sp"
+            android:layout_gravity="center_horizontal|bottom" />
     </FrameLayout>
 
     <android.support.design.widget.FloatingActionButton
