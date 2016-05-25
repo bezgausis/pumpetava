@@ -28,4 +28,7 @@ public class GalleryFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_gallery, container, false);
     }
 
+    public void vingrinajumi(View view){
+
+    }
 }

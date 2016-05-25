@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.deniv.pumpetava.GalleryFragment"
     android:nestedScrollingEnabled="true"
-    >
+    android:onClick="vingrinajumi">
 
     <!-- TODO: Update blank fragment layout -->
     <Button
