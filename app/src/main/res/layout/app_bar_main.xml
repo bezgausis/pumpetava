@@ -46,7 +46,9 @@
             android:text="stop"
             android:id="@+id/button"
             android:onClick="stop"
-            android:layout_gravity="left|bottom" />
+            android:layout_gravity="left|bottom"
+            android:enabled="true"
+            android:clickable="true" />
 
         <Button
             android:layout_width="wrap_content"
@@ -54,7 +56,9 @@
             android:text="resume/start"
             android:id="@+id/button2"
             android:onClick="skaitit"
-            android:layout_gravity="right|bottom" />
+            android:layout_gravity="right|bottom"
+            android:enabled="true"
+            android:clickable="true" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"

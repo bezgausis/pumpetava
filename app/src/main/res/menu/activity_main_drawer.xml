@@ -9,7 +9,7 @@
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ggg"
-            android:title="nedeļas" />
+            android:title="vingrinajumi" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ggg"
