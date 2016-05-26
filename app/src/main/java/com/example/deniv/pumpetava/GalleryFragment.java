@@ -27,35 +27,32 @@ import android.view.ViewGroup;
  */
 public class GalleryFragment extends Fragment {
     //priekš vingrinajjumi (galeeryFragmenta)
+    private View mRoot;
 
-    private FragmentTabHost mTabHost;
+    public GalleryFragment() {
+        // Required empty public constructor
+    }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mTabHost = new FragmentTabHost(getActivity());
-        mTabHost.setup(getActivity(), getChildFragmentManager(), R.layout.fragment_gallery);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        mRoot = inflater.inflate(R.layout.fragment_gallery, null);
 
-        Bundle arg1 = new Bundle();
-        arg1.putInt("Arg for Frag1", 1);
-        mTabHost.addTab(mTabHost.newTabSpec("Tab1").setIndicator("Frag Tab1"),
-                MyNestedFragment1.class, arg1);
+            TabHost tabHost = (TabHost)mRoot.findViewById(R.id.tabHost);
+            tabHost.setup();
 
-        Bundle arg2 = new Bundle();
-        arg2.putInt("Arg for Frag2", 2);
-        mTabHost.addTab(mTabHost.newTabSpec("Tab2").setIndicator("Frag Tab2"),
-                MyNestedFragment2.class, arg2);
+            TabHost.TabSpec tabSpec = tabHost.newTabSpec("izveidot");
+            tabSpec.setContent(R.id.izveidot);
+            tabSpec.setIndicator("Izveidot");
+            tabHost.addTab(tabSpec);
 
-        return mTabHost;
+            tabSpec = tabHost.newTabSpec("saraksts");
+            tabSpec.setContent(R.id.saraksts);
+            tabSpec.setIndicator("Saraksts");
+            tabHost.addTab(tabSpec);
+
+        return mRoot;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mTabHost = null;
-    }
 }
-/*
- ///////////////
-
-* */

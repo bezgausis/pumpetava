@@ -1,11 +1,13 @@
 package com.example.deniv.pumpetava;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,25 +17,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     NavigationView navigationView = null;
     Toolbar toolbar = null;
+    List<Vingrinajumi> Vingrinajumi = new ArrayList<Vingrinajumi>();////////////////////
+    ListView vingrListWiev;
+    //////
 
     /*
     EditText nametxt, koments;
-    // Inflate the layout for this fragment
     nametxt = (EditText) findViewById(R.id.editText);
     koments = (EditText) findViewById(R.id.editText2);
-
     final Button addBtn = (Button) findViewById(R.id.create_btn);
-
     nametxt.addTextChangedListener(new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -50,8 +60,16 @@ public class MainActivity extends AppCompatActivity
 
         }
     });
+    */
 
-    * */
+    // Inflate the layout for this fragment
+
+    //////
+    public void populateList(){
+        vingrListWiev = (ListView) findViewById(R.id.listView);
+        ArrayAdapter<Vingrinajumi> adapter = new VingrinajumiListAdapter();
+        vingrListWiev.setAdapter(adapter);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +78,8 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        //set the fragment initialy
+
+                //set the fragment initialy
         mainFragment fragment = new mainFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction=
                 getSupportFragmentManager().beginTransaction();
@@ -135,12 +154,16 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container,fragment);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_gallery) {
+
+
             //set the fragment initialy
             GalleryFragment fragment = new GalleryFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction=
                     getSupportFragmentManager().beginTransaction();
+
             fragmentTransaction.replace(R.id.fragment_container,fragment);
             fragmentTransaction.commit();
+
 
         } else if (id == R.id.nav_slideshow) {
             SlideFragment fragment = new SlideFragment();
@@ -161,9 +184,11 @@ public class MainActivity extends AppCompatActivity
 
         }
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
     }
     Button sakt;
     Chronometer pulkst;
@@ -193,7 +218,51 @@ public class MainActivity extends AppCompatActivity
         pulkst.stop();
         running =false;
     }
+/*
 
+* */
+    public void vingrinajumiOnClick(View view) {
+
+        EditText nametxt, koments;
+        nametxt = (EditText) findViewById(R.id.editText);
+        koments = (EditText) findViewById(R.id.editText2);
+
+        addVingr(nametxt.getText().toString(),koments.getText().toString());
+
+        populateList();
+        Toast.makeText(getApplicationContext(),
+                "Vingrinājums "+nametxt.getText().toString()+" pievienots :)", Toast.LENGTH_LONG).show();
+    }
 
     /////////////////////////////////////
+
+    private void addVingr(String nosauk, String koments){
+        Vingrinajumi.add(new Vingrinajumi (nosauk, koments) );
+    }
+
+    private class VingrinajumiListAdapter extends ArrayAdapter<Vingrinajumi> {
+
+
+        public VingrinajumiListAdapter(){
+            super (MainActivity.this, R.layout.listview_item,Vingrinajumi); // Mainactivity.this getact vietaaa!!!!!!
+        }
+        @Override
+        public View getView(int position, View view, ViewGroup parent){
+            if (view == null){
+                view= getLayoutInflater().inflate(R.layout.listview_item,parent,false);
+            }
+
+            Vingrinajumi currentVingrinajumi = Vingrinajumi.get(position);
+
+            TextView nosauk = (TextView) view.findViewById(R.id.textViewVingrinajums);
+            nosauk.setText(currentVingrinajumi.getNosauk());
+            TextView koment = (TextView) view.findViewById(R.id.textViewkoments);
+            koment.setText(currentVingrinajumi.getKoments());
+
+            return view;
+        }
+    }
+
+
+
 }
