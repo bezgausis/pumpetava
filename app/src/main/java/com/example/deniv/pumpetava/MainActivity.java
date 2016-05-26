@@ -1,6 +1,8 @@
 package com.example.deniv.pumpetava;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -37,6 +40,9 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar = null;
     List<Vingrinajumi> Vingrinajumi = new ArrayList<Vingrinajumi>();////////////////////
     ListView vingrListWiev;
+    Uri imageUri=null;
+
+   ImageView imgImgView;
     //////
 
     /*
@@ -227,7 +233,7 @@ public class MainActivity extends AppCompatActivity
         nametxt = (EditText) findViewById(R.id.editText);
         koments = (EditText) findViewById(R.id.editText2);
 
-        addVingr(nametxt.getText().toString(),koments.getText().toString());
+        Vingrinajumi.add(new Vingrinajumi(nametxt.getText().toString(),koments.getText().toString(),imageUri ));
 
         populateList();
         Toast.makeText(getApplicationContext(),
@@ -236,9 +242,11 @@ public class MainActivity extends AppCompatActivity
 
     /////////////////////////////////////
 
-    private void addVingr(String nosauk, String koments){
+/*
+*     private void addVingr(String nosauk, String koments){
         Vingrinajumi.add(new Vingrinajumi (nosauk, koments) );
     }
+* */
 
     private class VingrinajumiListAdapter extends ArrayAdapter<Vingrinajumi> {
 
@@ -258,11 +266,35 @@ public class MainActivity extends AppCompatActivity
             nosauk.setText(currentVingrinajumi.getNosauk());
             TextView koment = (TextView) view.findViewById(R.id.textViewkoments);
             koment.setText(currentVingrinajumi.getKoments());
-
+            ImageView imageView;
+            imageView = (ImageView) findViewById(R.id.vingList_image);
+            imageView.setImageURI(currentVingrinajumi.getUri());
             return view;
         }
     }
 
 
+    public void attelsClick(View view) {
+
+       // de.hdodenhof.circleimageview.CircleImageView imgImgView;
+        imgImgView = (ImageView) findViewById(R.id.edit_image);
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(intent.ACTION_GET_CONTENT);
+        super.startActivityForResult(Intent.createChooser(intent, "izvēlies attēlu"), 1);
+    }
+
+    public void onActivityResult(int reqCode,int resCode, Intent data){
+
+        imgImgView = (ImageView) findViewById(R.id.edit_image);
+        if(resCode== RESULT_OK){
+            if(resCode== 1) {
+
+            }
+        }
+        imageUri =data.getData();
+        imgImgView.setImageURI(data.getData());
+
+    }
 
 }
